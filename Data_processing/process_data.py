@@ -32,6 +32,8 @@ def get_index(categorised_list: List[CategorisedData], cat_id):
 
     return False
 
+#def add_to_category(category_id: int, category_list: List[CategorisedData] ):
+
 
 def split_categories(data):
     categorised_list: List[CategorisedData] = []
@@ -43,10 +45,16 @@ def split_categories(data):
             category_data.cat_id = category_id
             category_data.file_names = [item['file_name']]
             categorised_list.append(category_data)
-        else:
+        elif len(categorised_list[indices.index(category_id)].file_names) < 3000:
             index = indices.index(category_id)
             categorised_list[index].file_names.append(item['file_name'])
-        if all(len(category.file_names) >= 3000 for category in categorised_list):
-            break
-
+        else:
+            try:
+                category_id = item['item2']['category_id']
+                index = indices.index(category_id)
+                categorised_list[index].file_names.append(item['file_name'])
+            except KeyError:
+                category_id = item['item1']['category_id']
+                index = indices.index(category_id)
+                categorised_list[index].file_names.append(item['file_name'])
     return categorised_list
