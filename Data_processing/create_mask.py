@@ -41,9 +41,9 @@ def create_mask():
                 ##points = np.array(segmentation_list)
                 for polygon_coords in segmentation_list:
                     polygon_coords = np.array(polygon_coords, dtype=np.float32).reshape((-1, 2))
-                    polygon_coords = polygon_coords.astype(np.int32)  # Convert to integers
+                    polygon_coords = polygon_coords.astype(np.int32)  
 
-                    cv2.fillPoly(mask, [polygon_coords], color)  # Change color as needed
+                    cv2.fillPoly(mask, [polygon_coords], color)  
 
                 # Displaying the image
         mask_image = Image.fromarray(mask)
