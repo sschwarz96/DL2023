@@ -35,7 +35,6 @@ def get_file_paths():
 def create_onehot_masks():
     file_paths = get_file_paths()
     for file in file_paths:
-
         image = cv2.imread(directory+"/"+file)
         mask = np.zeros((width, height, layers), dtype=np.uint8)
 
