@@ -12,7 +12,7 @@ class CategorisedData:
 
 
 def extract_file_name(path):
-    file_name = path.split('\\')[-1]
+    file_name = path.split('/')[-1]
     file_name = file_name.split('.')[0]
     return file_name
 
@@ -29,7 +29,7 @@ def read_files(regex):
 
 
 def write_data(categorised_list: List[CategorisedData]):
-    with open('/Users/ludvigbennbom/Desktop/dataset500/data_summary.json', 'w') as outfile:
+    with open('/home/simon/smaller_dataset/data_summary.json', 'w') as outfile:
         outfile.write(json.dumps(categorised_list, default=lambda obj: obj.__dict__))
 
 
@@ -67,21 +67,18 @@ def select_smaller_data_set(categorised_clothes: List[CategorisedData]):
     for item in categorised_clothes:
         file_length = len(item.file_names)
         step_size = 1
-        if file_length > 50:
-            step_size = math.floor(file_length / 50)
+        if file_length > 500:
+            step_size = math.floor(file_length / 500)
         item.file_names = item.file_names[0: file_length: step_size]
-        item.file_names = item.file_names[0: 50]
+        item.file_names = item.file_names[0: 500]
     return categorised_clothes
 
 
 def create_smaller_data_set():
-    regex = "/Users/ludvigbennbom/Desktop/train/annos/*.json"##"F:\Dataset\\train\\annos\*.json"
+    regex = "/home/simon/Downloads/small_dataset/json/*.json"
     clothes = read_files(regex)
     categorised_clothes: List[CategorisedData] = split_categories(clothes)
     categorised_clothes.sort(key=lambda x: x.cat_id)
-    categorised_clothes = remove_categories(categorised_clothes)
+    #categorised_clothes = remove_categories(categorised_clothes)
     categorised_clothes = select_smaller_data_set(categorised_clothes)
     write_data(categorised_clothes)
-
-
-create_smaller_data_set()
