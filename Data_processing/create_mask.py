@@ -2,7 +2,6 @@ import os
 import json
 import cv2
 import numpy as np
-from PIL import Image
 
 directory = "/Users/ludvigbennbom/Desktop/train/"
 
@@ -55,10 +54,7 @@ def create_file_paths():
     data = json.load(open("/Users/ludvigbennbom/Desktop/dataset500/data_summary.json"))
     file_paths = []
     for category in data:
-        cat_id = category["cat_id"]
         file_names = category["file_names"]
-
-        # Loop through each file in the current category
         for file_name in file_names:
             file_paths.append(file_name)
 

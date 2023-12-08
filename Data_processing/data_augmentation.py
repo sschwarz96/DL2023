@@ -5,7 +5,6 @@ from albumentations import (
     Compose,
     HorizontalFlip,
     ColorJitter,
-    Defocus,
     RandomBrightnessContrast,
     CoarseDropout,
     PixelDropout,

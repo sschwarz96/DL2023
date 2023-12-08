@@ -79,6 +79,6 @@ def create_smaller_data_set():
     clothes = read_files(regex)
     categorised_clothes: List[CategorisedData] = split_categories(clothes)
     categorised_clothes.sort(key=lambda x: x.cat_id)
-    #categorised_clothes = remove_categories(categorised_clothes)
+    categorised_clothes = remove_categories(categorised_clothes)
     categorised_clothes = select_smaller_data_set(categorised_clothes)
     write_data(categorised_clothes)

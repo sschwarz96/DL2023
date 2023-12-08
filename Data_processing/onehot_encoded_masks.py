@@ -43,10 +43,8 @@ def create_onehot_masks():
 
             for x in range(width):
                 for y in range(height):
-
                     b, g, r = image[y, x]
                     matching_category = find_matching_category((r, g, b))
-
                     if matching_category is not None:
                         mask[y,x,matching_category] = 1
             np.save('/Users/ludvigbennbom/Desktop/dataset500/onehotstest/' + file.split(".")[0] + '.npy', mask)
